@@ -1,4 +1,6 @@
-<%@ page import="fr.epsi.blog.beans.Utilisateur" %><%--
+<%@ page import="fr.epsi.blog.beans.Utilisateur" %>
+<%@ page import="fr.epsi.blog.beans.Blog" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: douce
   Date: 17/05/2019
@@ -16,5 +18,29 @@
 <form id="form_aller_create" style="width: 100%; text-align: center;" method="post" action="/fr_epsi_blog_war_exploded/ListBlogs">
     <button type="submit">Envoyer</button>
 </form>
+
+${nom}
+${email}
+
+<ul>
+<%
+    // retrieve your list from the request, with casting
+    ArrayList<Blog> list = (ArrayList<Blog>) request.getAttribute("listBlogs");
+
+// print the information about every category of the list
+    for(Blog blog : list) {
+        out.println("<h1 style=\"margin-top: 25px; border-top: solid #000;\">");
+        out.println(blog.getTitre());
+        out.println("</h1>");
+        out.println("<ul>");
+        out.println("<li>");
+        out.println(blog.getDescription());
+        out.println("</li>");
+        out.println("</ul>");
+    }
+%>
+</ul>
+
+
 </body>
 </html>

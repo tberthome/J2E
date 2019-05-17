@@ -45,6 +45,7 @@ public class AuthentificationServlet extends HttpServlet {
                 //response.sendRedirect("/fr_epsi_blog_war_exploded/ListBlogs");
                 request.setAttribute("nom", utilisateurCourant.getNom());
                 request.setAttribute("email", utilisateurCourant.getEmail());
+                request.setAttribute("listBlogs", listBlogs);
                 request.getRequestDispatcher("listBlogs.jsp").forward(request,response);
             }
         } catch (SQLException e) {
