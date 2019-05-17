@@ -12,16 +12,7 @@
 </head>
 <body>
 
-<%
-    String titre = request.getParameter("titre");
-    String description = request.getParameter("description");
-    String auteur = request.getParameter("auteur");
-    String dateCreation = request.getParameter("dateCreation");
-%>
-
-
-<h1> Book: </h1>
-<p> <%="SAMPLE 2 RESULT " + strBook%> </p>
+<h1>ListBlogs</h1>
 
 </body>
 </html>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Servlet implementation class AuthentificationServlet
@@ -25,38 +26,34 @@ public class AuthentificationServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-/*
-        UtilisateurDao utilisateurDao = new UtilisateurDao();
-        BlogDao blogDao=new BlogDao();
 
+        UtilisateurDao utilisateurDao = new UtilisateurDao();
         String email = request.getParameter("utilisateur_getEmail");
         String mdp = request.getParameter("utilisateur_getPassword");
-        Statut st=new Statut(1,"creer");
+
         try {
-            utilisateurCourant = utilisateurDao.getUtilisateur(email,mdp);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Blog blog=new Blog(5, "yy","tt",0,utilisateurCourant,st);
-        try {
+            Utilisateur utilisateur = utilisateurDao.getUtilisateur(email,mdp);
+            System.out.println(utilisateur);
+            if (utilisateur.getEmail() != null || utilisateur.getEmail().length() > 0) {
 
-            System.out.println(utilisateurCourant);
-           blogDao.createBlog(blog,utilisateurCourant);
-
-
-            if (utilisateurCourant.getEmail() != null || utilisateurCourant.getEmail().length() > 0) {
-
-                //response.sendRedirect("http://localhost:8080/fr_epsi_blog_war_exploded/ListBlogs");
-                //request.getRequestDispatcher("listBlogs.jsp").forward(request,response);
+                BlogDao blogDao = new BlogDao();
+                List<Blog> listBlogs = blogDao.getAllBlogs();
+                for (Blog blog:listBlogs) {
+                    System.out.println(blog);
+                }
+                System.out.println("Get utilisateur");
+                //response.sendRedirect("/fr_epsi_blog_war_exploded/ListBlogs");
+                request.setAttribute("nom", utilisateur.getNom());
+                request.setAttribute("email", utilisateur.getEmail());
+                request.getRequestDispatcher("listBlogs.jsp").forward(request,response);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Requete erroné !! Recupere un utilisateur");
-      }
-//      catch (IOException e) {
-//            e.printStackTrace();
-//        }
-*/
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
     }
-
 }

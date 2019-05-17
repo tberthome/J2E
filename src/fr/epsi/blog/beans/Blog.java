@@ -94,4 +94,18 @@ public class Blog {
 	public void setNbVue(Integer nbVue) {
 		this.nbVue = nbVue;
 	}
+
+	@Override
+	public String toString() {
+		return "Blog{" +
+				"id=" + id +
+				", titre='" + titre + '\'' +
+				", description='" + description + '\'' +
+				", nbVue=" + nbVue +
+				", createur=" + createur +
+				", dateCreation=" + dateCreation +
+				", dateModification=" + dateModification +
+				", statut=" + statut +
+				'}';
+	}
 }
