@@ -35,8 +35,25 @@ public class BlogDao implements IBlogDao {
     }
 
     @Override
-    public List<Blog> getBlogs(Utilisateur utilisateur) {
-        return null;
+    public List<Blog> getBlogs(Utilisateur user) throws SQLException {
+        Connection connection = PersistenceManager.getConnection();
+        List<Blog> lblog=new ArrayList<Blog>();
+        Blog blog=null;
+        String requete = "SELECT p.id, p.titre, p.description, p.nbVue,p.dateCreation,p.dateModification,u.id, u.nom, u.email, u.password, u.dateCreation,u.admin,s.id,s.description FROM post p" +
+                " INNER JOIN  user u ON u.id=p.auteur " +
+                "INNER  JOIN status s ON s.id=p.status WHERE s.id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(requete);
+        preparedStatement.setInt(1, user.getId());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Utilisateur utilisateur=new Utilisateur(resultSet.getInt(7),resultSet.getString(8),resultSet.getString(9),resultSet.getString(10),resultSet.getDate(11),resultSet.getBoolean(12));
+            Statut statut=new Statut(resultSet.getInt(13),resultSet.getString(14));
+            blog = new Blog(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4), utilisateur,resultSet.getDate(5), resultSet.getDate(6),statut);
+            lblog.add(blog);
+        }
+
+        return lblog;
+
     }
 
     @Override

@@ -32,9 +32,9 @@ public class AuthentificationServlet extends HttpServlet {
         String mdp = request.getParameter("utilisateur_getPassword");
 
         try {
-            Utilisateur utilisateur = utilisateurDao.getUtilisateur(email,mdp);
-            System.out.println(utilisateur);
-            if (utilisateur.getEmail() != null || utilisateur.getEmail().length() > 0) {
+           utilisateurCourant = utilisateurDao.getUtilisateur(email,mdp);
+            System.out.println(utilisateurCourant);
+            if (utilisateurCourant.getEmail() != null || utilisateurCourant.getEmail().length() > 0) {
 
                 BlogDao blogDao = new BlogDao();
                 List<Blog> listBlogs = blogDao.getAllBlogs();
@@ -43,8 +43,8 @@ public class AuthentificationServlet extends HttpServlet {
                 }
                 System.out.println("Get utilisateur");
                 //response.sendRedirect("/fr_epsi_blog_war_exploded/ListBlogs");
-                request.setAttribute("nom", utilisateur.getNom());
-                request.setAttribute("email", utilisateur.getEmail());
+                request.setAttribute("nom", utilisateurCourant.getNom());
+                request.setAttribute("email", utilisateurCourant.getEmail());
                 request.getRequestDispatcher("listBlogs.jsp").forward(request,response);
             }
         } catch (SQLException e) {

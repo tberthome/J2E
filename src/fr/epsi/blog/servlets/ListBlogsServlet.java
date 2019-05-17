@@ -25,13 +25,14 @@ public class ListBlogsServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         BlogDao blogDao = new BlogDao();
         UtilisateurDao utilisateurDao = new UtilisateurDao();
         Utilisateur utilisateur = null;
         try {
             utilisateur = utilisateurDao.getUtilisateur("gregory", "1234");
+            request.getRequestDispatcher("createBlog.html").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,7 +40,7 @@ public class ListBlogsServlet extends HttpServlet {
 
         //request.set;
 
-        request.getRequestDispatcher("listBlogs.jsp").forward(request, response);
+
 
     }
 
