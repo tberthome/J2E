@@ -1,4 +1,6 @@
-<%@ page import="fr.epsi.blog.beans.Utilisateur" %><%--
+<%@ page import="fr.epsi.blog.beans.Utilisateur" %>
+<%@ page import="fr.epsi.blog.beans.Blog" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: douce
   Date: 17/05/2019
@@ -13,6 +15,21 @@
 <body>
 
 <h1>ListBlogs</h1>
+
+${nom}
+${email}
+
+<%
+    // retrieve your list from the request, with casting
+    ArrayList<Blog> list = (ArrayList<Blog>) request.getAttribute("listBlogs");
+
+// print the information about every category of the list
+    for(Blog blog : list) {
+        out.println(blog.getTitre());
+        out.println(blog.getDescription());
+    }
+%>
+
 
 </body>
 </html>
