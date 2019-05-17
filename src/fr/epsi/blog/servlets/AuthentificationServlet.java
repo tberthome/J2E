@@ -42,10 +42,6 @@ public class AuthentificationServlet extends HttpServlet {
                 for (Blog blog:listBlogs) {
                     System.out.println(blog);
                 }
-                System.out.println("Get utilisateur");
-                //response.sendRedirect("/fr_epsi_blog_war_exploded/ListBlogs");
-                request.setAttribute("nom", utilisateur.getNom());
-                request.setAttribute("email", utilisateur.getEmail());
                 request.setAttribute("listBlogs", listBlogs);
                 request.getRequestDispatcher("listBlogs.jsp").forward(request,response);
             }

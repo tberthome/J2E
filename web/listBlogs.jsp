@@ -1,6 +1,7 @@
 <%@ page import="fr.epsi.blog.beans.Utilisateur" %>
 <%@ page import="fr.epsi.blog.beans.Blog" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: douce
   Date: 17/05/2019
@@ -16,10 +17,6 @@
 
 <h1>ListBlogs</h1>
 
-${nom}
-${email}
-
-<ul>
 <%
     // retrieve your list from the request, with casting
     ArrayList<Blog> list = (ArrayList<Blog>) request.getAttribute("listBlogs");
@@ -31,12 +28,14 @@ ${email}
         out.println("</h1>");
         out.println("<ul>");
         out.println("<li>");
-        out.println(blog.getDescription());
+        out.println(blog.getCreateur().getNom());
+        out.println("</li>");
+        out.println("<li>");
+        out.println(new SimpleDateFormat("yyyy-MM-dd").format(blog.getDateCreation()));
         out.println("</li>");
         out.println("</ul>");
     }
 %>
-</ul>
 
 
 </body>
