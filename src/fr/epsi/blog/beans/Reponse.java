@@ -8,8 +8,14 @@ public class Reponse {
 	private Utilisateur blogger;
 	private String commentaire;
 	private Date publication;
-	
-	public Blog getBlog() {
+
+    public Reponse(String comm, Date publi, Utilisateur utilisateur) {
+    	this.commentaire=comm;
+    	this.publication=publi;
+    	this.blogger=utilisateur;
+    }
+
+    public Blog getBlog() {
 		return blog;
 	}
 	public void setBlog(Blog blog) {
@@ -33,6 +39,6 @@ public class Reponse {
 	public void setPublication(Date publication) {
 		this.publication = publication;
 	}
-	
+
 	
 }
