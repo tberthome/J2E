@@ -15,10 +15,34 @@
 </head>
 <body>
 
-<h1>ListBlogs</h1>
+<h1>Création d'un blog</h1>
 <form id="form_aller_create" style="width: 100%; text-align: center;" method="post" action="/fr_epsi_blog_war_exploded/ListBlogs">
     <button type="submit">Envoyer</button>
 </form>
+
+<h1>Visualiser mes posts</h1>
+
+<%
+    // retrieve your list from the request, with casting
+    ArrayList<Blog> listBlogs = (ArrayList<Blog>) request.getAttribute("listBlogsByUser");
+
+// print the information about every category of the list
+    for(Blog blog : listBlogs) {
+        out.println("<h1 style=\"margin-top: 25px; border-top: solid #000;\">");
+        out.println(blog.getTitre());
+        out.println("</h1>");
+        out.println("<ul>");
+        out.println("<li>");
+        out.println(blog.getCreateur().getNom());
+        out.println("</li>");
+        out.println("<li>");
+        out.println(new SimpleDateFormat("yyyy-MM-dd").format(blog.getDateCreation()));
+        out.println("</li>");
+        out.println("</ul>");
+    }
+%>
+
+<h1>Visualiser tous les posts visibles :</h1>
 
 <%
     // retrieve your list from the request, with casting

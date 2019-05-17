@@ -36,7 +36,11 @@ public class ListBlogsServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        List<Blog> listBlogs = blogDao.getBlogs(utilisateur);
+        try {
+            List<Blog> listBlogs = blogDao.getBlogs(utilisateur);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         //request.set;
 

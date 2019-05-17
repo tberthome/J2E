@@ -38,15 +38,10 @@ public class AuthentificationServlet extends HttpServlet {
 
                 BlogDao blogDao = new BlogDao();
                 List<Blog> listBlogs = blogDao.getAllBlogs();
-                System.out.println(listBlogs);
-                for (Blog blog:listBlogs) {
-                    System.out.println(blog);
-                }
-                System.out.println("Get utilisateur");
-                //response.sendRedirect("/fr_epsi_blog_war_exploded/ListBlogs");
-                request.setAttribute("nom", utilisateurCourant.getNom());
-                request.setAttribute("email", utilisateurCourant.getEmail());
+                List<Blog> listBlogsByUser = blogDao.getBlogs(utilisateurCourant);
+                System.out.println(utilisateurCourant.getId());
                 request.setAttribute("listBlogs", listBlogs);
+                request.setAttribute("listBlogsByUser", listBlogsByUser);
                 request.getRequestDispatcher("listBlogs.jsp").forward(request,response);
             }
         } catch (SQLException e) {

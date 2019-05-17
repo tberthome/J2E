@@ -4,10 +4,12 @@ import fr.epsi.blog.beans.Utilisateur;
 import fr.epsi.blog.dao.PersistenceManager;
 import fr.epsi.blog.dao.UtilisateurDao;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +26,7 @@ public class EnregistrementServlet extends HttpServlet {
      * @param request
      * @param response
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String nom = request.getParameter("utilisateur_nom");
         String email = request.getParameter("utilisateur_email");
@@ -47,6 +49,8 @@ public class EnregistrementServlet extends HttpServlet {
             e.printStackTrace();
             System.out.println("Requete SQL creation utilisateur erroné !");
         }
+
+        request.getRequestDispatcher("index.html").forward(request,response);
 
     }
 
