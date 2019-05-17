@@ -32,10 +32,6 @@ public class CreateBlogServlet extends HttpServlet {
         Statut statut=new Statut(1,"nn");
 
         Blog blog=new Blog(titre,description,user,statut);
-
-
-
-
         BlogDao blogDao = new BlogDao();
 
         try {

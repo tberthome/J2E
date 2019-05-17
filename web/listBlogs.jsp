@@ -16,6 +16,9 @@
 <body>
 
 <h1>ListBlogs</h1>
+<form id="form_aller_create" style="width: 100%; text-align: center;" method="post" action="/fr_epsi_blog_war_exploded/ListBlogs">
+    <button type="submit">Envoyer</button>
+</form>
 
 <%
     // retrieve your list from the request, with casting

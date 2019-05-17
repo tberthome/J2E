@@ -10,7 +10,7 @@ import fr.epsi.blog.beans.Utilisateur;
 public interface IBlogDao {
 
 	Blog getBlog(Integer id) throws SQLException;
-	List<Blog> getBlogs(Utilisateur utilisateur);
+	List<Blog> getBlogs(Utilisateur utilisateur) throws SQLException;
 	List<Blog> getAllBlogs() throws SQLException;
 	void createBlog(Blog blog, Utilisateur user) throws SQLException;
 	void updateBlog(Blog blog) throws SQLException;
