@@ -19,16 +19,24 @@
 ${nom}
 ${email}
 
+<ul>
 <%
     // retrieve your list from the request, with casting
     ArrayList<Blog> list = (ArrayList<Blog>) request.getAttribute("listBlogs");
 
 // print the information about every category of the list
     for(Blog blog : list) {
+        out.println("<h1 style=\"margin-top: 25px; border-top: solid #000;\">");
         out.println(blog.getTitre());
+        out.println("</h1>");
+        out.println("<ul>");
+        out.println("<li>");
         out.println(blog.getDescription());
+        out.println("</li>");
+        out.println("</ul>");
     }
 %>
+</ul>
 
 
 </body>
